@@ -5,18 +5,29 @@ using namespace std; // considered as bad practice (see https://stackoverflow.co
 
 class Box {
     public: 
+        static int amountOfBoxes;
+
         int height;
         int length;
         int width;
         string toString();
 
-        // constructor
-        Box() : Box(5,5,5) {} // set default values
+        // constructors
+        Box() : Box(5,5,5) {} // set default values and call other constructor
 
         Box(int height, int length, int width){
             this->height = height;
             this->length = length;
             this->width = width;
+            amountOfBoxes++;
+        }
+
+        // copy constructor
+        Box(const Box &obj){
+            height = obj.height;
+            length = obj.length;
+            width = obj.width;
+            amountOfBoxes++;
         }
 
         double getVolume(){
@@ -29,7 +40,9 @@ class Box {
 // with the scope resolution operator ":" 
 string Box::toString(){
     // shows box info
-    string s = "---------- BOX ----------";
+    string s;
+    s.append("\n\n");
+    s.append("---------- BOX ----------");
     s.append("\n");
     s.append("height: ");
     s.append(to_string(height));
@@ -54,28 +67,22 @@ void printLine(int length){
     cout << endl << s << endl;
 }
 
+// static member must be initialized outside of the class and main method
+int Box::amountOfBoxes = 0;
+
 int main()
 {
     cout << "Hello Box-World";
     printLine(15);
     
     Box b1;
-    cout << endl << "B1 height: " << b1.height;
-    cout << endl << "B1 width: " << b1.width;
-    cout << endl << "B1 length: " << b1.length;
-    cout << endl << "B1 volume: " << b1.getVolume();
-    
-    printLine(15);
-    
+    cout << b1.toString();
     Box b2(5,4,8);
-    cout << endl << "B2 height: " << b2.height;
-    cout << endl << "B2 width: " << b2.width;
-    cout << endl << "B2 length: " << b2.length;
-    cout << endl << "B2 volume: " << b2.getVolume();
-    
-    printLine(15);
-    
-    cout << endl << b1.toString() << endl;
+    cout << b2.toString();
+    Box b3(b2);
+    cout << b3.toString();
+
+    cout << "Amount of boxes created: " << Box::amountOfBoxes << endl;
 
     return 0;
 }
