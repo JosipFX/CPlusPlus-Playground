@@ -28,19 +28,36 @@ class Box {
 // Member functions can be defined outside the class definition,
 // with the scope resolution operator ":" 
 string Box::toString(){
-    string s = "This Box has a Volume of: ";
+    // shows box info
+    string s = "---------- BOX ----------";
+    s.append("\n");
+    s.append("height: ");
+    s.append(to_string(height));
+    s.append("\n");
+    s.append("length: ");
+    s.append(to_string(length));
+    s.append("\n");
+    s.append("width: ");
+    s.append(to_string(width));
+    s.append("\n");
+    s.append("volume: ");
     s.append(to_string(getVolume()));
+    s.append("\n");
+    s.append("-------------------------");
+    s.append("\n");
     return s; 
 }
 
-void printLine(){
-    cout << endl << "______________________________" << endl;
+void printLine(int length){
+    string s = "";
+    s.append(length,'_');
+    cout << endl << s << endl;
 }
 
 int main()
 {
     cout << "Hello Box-World";
-    printLine();
+    printLine(15);
     
     Box b1;
     cout << endl << "B1 height: " << b1.height;
@@ -48,7 +65,7 @@ int main()
     cout << endl << "B1 length: " << b1.length;
     cout << endl << "B1 volume: " << b1.getVolume();
     
-    printLine();
+    printLine(15);
     
     Box b2(5,4,8);
     cout << endl << "B2 height: " << b2.height;
@@ -56,7 +73,7 @@ int main()
     cout << endl << "B2 length: " << b2.length;
     cout << endl << "B2 volume: " << b2.getVolume();
     
-    printLine();
+    printLine(15);
     
     cout << endl << b1.toString() << endl;
 
