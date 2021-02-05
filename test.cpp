@@ -67,12 +67,32 @@ class BetterBox: public Box {
         string toString(){
             return "Your are a better box than the others :)";
         }
+
+        // function overloading
+        void print(int i) {
+            cout << "Printing int: " << i << endl;
+        }
+        void print(double  f) {
+            cout << "Printing float: " << f << endl;
+        }
+        void print(char* c) {
+            cout << "Printing character: " << c << endl;
+        }
 };
 
 void printLine(int length){
     string s = "";
     s.append(length,'_');
     cout << endl << s << endl;
+}
+
+void testPrints(){
+    printLine(30);
+    BetterBox b;
+    b.print(2.5);
+    b.print(20);
+    // b.print("TEST");
+    printLine(30);
 }
 
 // static member must be initialized outside of the class and main method
@@ -94,6 +114,8 @@ int main()
     printLine(30);
 
     cout << "Amount of boxes created: " << Box::amountOfBoxes << endl;
+
+    testPrints();    
 
     return 0;
 }
