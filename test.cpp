@@ -61,6 +61,14 @@ string Box::toString(){
     return s; 
 }
 
+// Derived class / Abgeleitete Klasse
+class BetterBox: public Box {
+    public:
+        string toString(){
+            return "Your are a better box than the others :)";
+        }
+};
+
 void printLine(int length){
     string s = "";
     s.append(length,'_');
@@ -81,6 +89,9 @@ int main()
     cout << b2.toString();
     Box b3(b2);
     cout << b3.toString();
+    BetterBox b4;
+    cout << b4.toString();
+    printLine(30);
 
     cout << "Amount of boxes created: " << Box::amountOfBoxes << endl;
 
