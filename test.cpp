@@ -30,6 +30,15 @@ class Box {
             amountOfBoxes++;
         }
 
+        // overloading '+' operator, so box = box + box is possible
+        Box operator+(const Box& b) {
+            Box box;
+            box.length = this->length + b.length;
+            box.width = this->width + b.width;
+            box.height = this->height + b.height;
+            return box;
+        }
+
         double getVolume(){
             return (double) height * length * width;
         }    
@@ -112,6 +121,10 @@ int main()
     BetterBox b4;
     cout << b4.toString();
     printLine(30);
+    Box b5;
+    b5 = b1 + b2;
+
+    cout << b5.toString();
 
     cout << "Amount of boxes created: " << Box::amountOfBoxes << endl;
 
